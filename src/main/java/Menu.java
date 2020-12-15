@@ -6,7 +6,7 @@ public class Menu
     public static void main(String args[]) 
     { 
         System.out.println("Menu:"); 
-        System.out.println("1.Salespaerson"); 
+        System.out.println("1.Salesperson"); 
         System.out.println("2.Customer"); 
         Scanner scan = new Scanner(System.in);
         int user_type = scan.nextInt();
@@ -34,7 +34,6 @@ public class Menu
                 new_item.setType(type);
                 System.out.println(new_item.toString()); 
             }
-
 
         }    
         else{
