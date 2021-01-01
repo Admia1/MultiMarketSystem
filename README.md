@@ -1,4 +1,10 @@
-### Contributors
-  1. Ali
-  2. Yasna
+#### Note
+
+Branches:
+
+TUI ==> TerminalUserInterface
+Classes ==> Classes
+Mariadb ==> mariadb_setup
+
+
 
