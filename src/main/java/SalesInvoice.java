@@ -26,10 +26,10 @@ public class SalesInvoice{
     public void setCustomer_name(String customer_name){
         this.customer_name = customer_name;
     }
-    public void set_date(int date){
+    public void setDate(int date){
         this.date = date;
     }
-    public void set_price(BigDecimal price){
+    public void setPrice(BigDecimal price){
         this.price = price;
     }
 
@@ -42,10 +42,10 @@ public class SalesInvoice{
     public String getCustomer_name(){
         return customer_name;
     }
-    public int get_date(){
+    public int getDate(){
         return date;
     }
-    public BigDecimal get_price(){
+    public BigDecimal getPrice(){
         return price;
     }
 }
