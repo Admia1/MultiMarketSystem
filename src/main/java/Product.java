@@ -1,7 +1,7 @@
 import java.util.*;
 import java.math.BigDecimal;
 
-public class PurchaseInvoice{
+public class Product{
     String name;
     String brand;
     int date;
@@ -9,7 +9,7 @@ public class PurchaseInvoice{
     BigDecimal price;
 
 
-    public PurchaseInvoice(String name, String brand, int date, int barcode, BigDecimal price){
+    public Product(String name, String brand, int date, int barcode, BigDecimal price){
         this.name = name;
         this.brand = brand;
         this.date = date;

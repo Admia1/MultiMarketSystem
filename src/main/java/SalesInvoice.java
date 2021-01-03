@@ -43,7 +43,7 @@ public class SalesInvoice{
         return customer_name;
     }
     public int getDate(){
-        return date;
+        return date;    
     }
     public BigDecimal getPrice(){
         return price;
