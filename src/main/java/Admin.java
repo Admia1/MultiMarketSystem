@@ -198,10 +198,7 @@ public class Admin {
     }
 
 
-    public int edit_delieveryexecutive(Connection con)
-    {
-        
-    }
+    
     public int edit_categories(Connection con)
     {
         try {
