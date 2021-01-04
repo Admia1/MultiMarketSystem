@@ -28,24 +28,25 @@ public class grocery_store {
 		
 		/// global variables
 		///takes care of continuous work flow
-// Admin
+		// Admin
 		Admin ad=new Admin();	
 		int adminlogged=0;
 		int t=0;
-//consumer
+		//consumer
 		boolean loggedin=false;
 		Consumer customer=new Consumer();
-//del exec		
-		Delivery_Executive delx=new Delivery_Executive();
+		
+		// Todo
+		//del		
+		Delivery delx=new Delivery();
 		int flag1d=1;int regd=-1;
 		int delivery=0;
-//supplier
+		//supplier
 		Supplier sup=new Supplier();
 		int flag1s=1;int regs=-1;
 		int sup_id=0;
 		
-// senti_analysis
-		MainApp obj=new MainApp();
+		
 		
 		
 		while(true && flag!=0) {
