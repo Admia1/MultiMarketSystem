@@ -3,9 +3,16 @@ import java.sql.*;
 
 
 public class Consumer{
-    String name;
-    String family;
-    int phone_number;
+	
+    String consumer_name;
+    String consumer_family_name;
+    String consumer_phone_number;
+    String consumer_email;
+    String consumer_address;
+    String consumer_username;
+    String consumer_password;
+
+
     Scanner sc=new Scanner(System.in);
 	int customer_id=0;
 	int order_id=0;
@@ -17,25 +24,81 @@ public class Consumer{
 
     
     public void setName(String name){
-        this.name = name;
+        this.consumer_name = name;
     }
-    public void setFamily(String family){
-        this.family = family;
+
+    public void setFamilyName(String family_name){
+        this.consumer_family_name = family_name;
     }
-    public void setPhone_number(int phone_number){
-        this.phone_number = phone_number;
+
+    public void setPhoneNumber(String phone_number){
+        this.consumer_phone_number = phone_number;
+    }
+
+    public void setEmail(String email){
+        this.consumer_email = email;
+    }
+
+    public void setAddress(String address){
+        this.consumer_address = address;
+    }
+
+    public void setUsername(String username){
+        this.consumer_username = username;
+    }
+
+    public void setPassword(String password){
+        this.consumer_password = password;
     }
 
     public String getName(){
-        return name;
-    }
-    public String getFamily(){
-        return family;
-    }
-    public int getPhone_number(){
-        return phone_number;
+        return this.consumer_name;
     }
 
+    public String getFamilyName(){
+        return this.consumer_family_name;
+    }
+
+    public String getPhoneNumber(){
+        return this.consumer_phone_number;
+    }
+
+    public String getEmail(){
+        return this.consumer_email;
+    }
+
+    public String setAddress(){
+        return this.consumer_address;
+    }
+
+    public String setUsername(){
+        return this.consumer_username;
+    }
+
+    public String setPassword(){
+        return this.consumer_password;
+    }
+
+
+    public boolean addConsumer(){
+        return true;
+    }
+
+    public boolean deleteConsumer(){
+        return true;
+    }
+
+    public boolean updateConsumer(){
+        return true;
+    }
+
+    public boolean searchConsumer(){
+        return true;
+    }
+
+    public boolean saveConsumer(){
+        return true;
+    }
 
 	//customer login function
 	public int customer_login(Connection con) {
@@ -73,8 +136,8 @@ public class Consumer{
 		System.out.print("Enter your login_id");String loginid=sc.nextLine();System.out.println();
 		System.out.print("Enter your password");String password=sc.nextLine();System.out.println();
 		System.out.println("--------------------------------------------------------------");
-		System.out.print("Enter your first name");String fname=sc.nextLine();System.out.println();
-		System.out.print("Enter your lastname");String lname=sc.nextLine();System.out.println();
+		System.out.print("Enter your first consumer_name");String fconsumer_name=sc.nextLine();System.out.println();
+		System.out.print("Enter your lastconsumer_name");String lconsumer_name=sc.nextLine();System.out.println();
 		System.out.println("--------------------------------------------------------------");
 		System.out.print("Enter your address line1");String address1=sc.nextLine();System.out.println();
 		System.out.print("Enter your address line2");String address2=sc.nextLine();System.out.println();
@@ -93,8 +156,8 @@ public class Consumer{
 				java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(javaTime);
 				String join=sqlTimestamp.toString();
 				int x = 0;
-				String query1="INSERT into customer (`login_id`,`login_password`,`first_name`, `last_name`,`address_line1`,`address_line2`,`city`,`pin_code`,`contact`,`country_code`,`credit_limit`,`joined_at`,`points`)";
-				String query2="VALUES ('"+loginid+"','"+password+"','"+fname+"','"+lname+"','"+address1+"','"+address2+"','"+city+"','"+pincode+"','"+contact+"','"+concode+"','"+creditlimit+"','"+join+"','"+x+"' )";
+				String query1="INSERT into customer (`login_id`,`login_password`,`first_consumer_name`, `last_consumer_name`,`address_line1`,`address_line2`,`city`,`pin_code`,`contact`,`country_code`,`credit_limit`,`joined_at`,`points`)";
+				String query2="VALUES ('"+loginid+"','"+password+"','"+fconsumer_name+"','"+lconsumer_name+"','"+address1+"','"+address2+"','"+city+"','"+pincode+"','"+contact+"','"+concode+"','"+creditlimit+"','"+join+"','"+x+"' )";
 				String final_query=query1+query2;
 				stmt.executeUpdate(final_query);
 				stmt.close();
@@ -117,9 +180,9 @@ public class Consumer{
 			try {
 				if(flag==1) {
 					System.out.println("--------------------------------------------------------------");
-					ResultSet rs=stmt.executeQuery("select product_name,product_price,product_rating from products where quantity_available>0" );
+					ResultSet rs=stmt.executeQuery("select product_consumer_name,product_price,product_rating from products where quantity_available>0" );
 					while(rs.next()) {
-						System.out.println("product "+rs.getString("product_name")+" price  "+rs.getString("product_price")+" ratings "+rs.getString("product_rating"));
+						System.out.println("product "+rs.getString("product_consumer_name")+" price  "+rs.getString("product_price")+" ratings "+rs.getString("product_rating"));
 						System.out.println("--------------------------------------------------------------");
 					}
 					return 1;
@@ -135,9 +198,9 @@ public class Consumer{
 					String category=sc.nextLine();
 					System.out.println(category);
 					
-					ResultSet rs=stmt.executeQuery("select p.product_name,p.product_price,p.product_rating,c.category_name from products as p,categories as c where p.quantity_available>0 and p.category_id=c.category_id and c.category_name='"+category+"'");
+					ResultSet rs=stmt.executeQuery("select p.product_consumer_name,p.product_price,p.product_rating,c.category_consumer_name from products as p,categories as c where p.quantity_available>0 and p.category_id=c.category_id and c.category_consumer_name='"+category+"'");
 					while(rs.next()) {
-						System.out.println("product "+rs.getString("p.product_name")+" price  "+rs.getString("p.product_price")+" ratings "+rs.getString("p.product_rating")+" category "+rs.getString("c.category_name"));
+						System.out.println("product "+rs.getString("p.product_consumer_name")+" price  "+rs.getString("p.product_price")+" ratings "+rs.getString("p.product_rating")+" category "+rs.getString("c.category_consumer_name"));
 						System.out.println("--------------------------------------------------------------");
 					}
 					stmt.close();
@@ -145,10 +208,10 @@ public class Consumer{
 				}
 				// flag==3 shows all the categories available
 				else if(flag==3) {
-					ResultSet rs=stmt.executeQuery("select category_name from categories");
+					ResultSet rs=stmt.executeQuery("select category_consumer_name from categories");
 					System.out.println("--------------------------------------------------------------");
 					while(rs.next()) {
-						System.out.println(rs.getString("category_name"));
+						System.out.println(rs.getString("category_consumer_name"));
 						System.out.println("--------------------------------------------------------------");
 					}
 					stmt.close();
@@ -170,14 +233,14 @@ public class Consumer{
 							order_id=rs1.getInt(1)+1;// this tracks the order_id for a particular order
 						}
 						
-						ResultSet rs=stmt.executeQuery("select product_name,product_price,product_rating,quantity_available,product_id from products where product_name='"+prod+"'");
+						ResultSet rs=stmt.executeQuery("select product_consumer_name,product_price,product_rating,quantity_available,product_id from products where product_consumer_name='"+prod+"'");
 						if(!rs.first()) {
-							System.out.println("*********Sorry no product with this name try again************");
+							System.out.println("*********Sorry no product with this consumer_name try again************");
 							return 0;
 						}
 						int product_price=rs.getInt("product_price");
 						int product_id=rs.getInt("product_id");
-						System.out.println("product "+rs.getString("product_name")+" price  "+Integer.toString(product_price)+" ratings "+rs.getString("product_rating"));
+						System.out.println("product "+rs.getString("product_consumer_name")+" price  "+Integer.toString(product_price)+" ratings "+rs.getString("product_rating"));
 						System.out.println("--------------------------------------------------------------");
 						System.out.println("want to add this product to cart yes/no");
 						String input=sc.next();
@@ -197,7 +260,7 @@ public class Consumer{
 							System.out.println(productcount+" "+cost);
 							String pr=Integer.toString(price);
 							stmt.executeUpdate("INSERT INTO order_items VALUES ("+Integer.toString(order_id)+","+Integer.toString(product_id)+","+Integer.toString(k)+","+pr+","+"0"+","+pr+")" );
-							String qu="UPDATE products SET quantity_available ="+Integer.toString(quantity_available-k)+" WHERE product_name='"+prod+"'";
+							String qu="UPDATE products SET quantity_available ="+Integer.toString(quantity_available-k)+" WHERE product_consumer_name='"+prod+"'";
 							stmt.executeUpdate(qu);
 							
 						}
@@ -312,15 +375,15 @@ public class Consumer{
 				//flag 7 is to submit product rating
 				if(flag==7) {
 					String cust_id=Integer.toString(customer_id);
-					String q="SELECT distinct(p.product_name) from orders as o,order_items as od,products as p where o.customer_id="+cust_id +" and od.order_id=o.order_id and p.product_id=od.product_id";
+					String q="SELECT distinct(p.product_consumer_name) from orders as o,order_items as od,products as p where o.customer_id="+cust_id +" and od.order_id=o.order_id and p.product_id=od.product_id";
 					ResultSet rs=stmt.executeQuery(q);
 					// shows all previously ordered products
 					System.out.println("previously ordered items");
 					while(rs.next()) {
-						System.out.println("product "+rs.getString("p.product_name"));
+						System.out.println("product "+rs.getString("p.product_consumer_name"));
 						}
 					System.out.println("--------------------------------------------------------------");
-					System.out.print("submit the name of the products to rate:");
+					System.out.print("submit the consumer_name of the products to rate:");
 					//if(count1==0) {
 						sc.nextLine();
 						count1++;
@@ -328,7 +391,7 @@ public class Consumer{
 					String prod=sc.nextLine();
 					System.out.println("enter rating between 0 to 5");
 					int ratings=sc.nextInt();
-					rs=stmt.executeQuery("SELECT product_id from products where product_name='"+prod+"'");
+					rs=stmt.executeQuery("SELECT product_id from products where product_consumer_name='"+prod+"'");
 					int p_id=0;
 					while(rs.next()) {
 						p_id=rs.getInt(1);
