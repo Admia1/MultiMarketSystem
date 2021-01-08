@@ -77,8 +77,21 @@ public class Product{
         return product_price;
     }
 
-    
+    public boolean addProducts(){
+        return true;
+    }
 
+    public boolean deleteProducts(){
+        return true;
+    }
+
+    public boolean updateProducts(){
+        return true;
+    }
+
+    public boolean searchSProducts(){
+        return true;
+    }
 
 }
 
