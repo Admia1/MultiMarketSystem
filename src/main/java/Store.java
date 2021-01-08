@@ -5,9 +5,9 @@ public class Store{
     String store_type;
     String store_description;
 
-    public Store(String store_name, String store_type){
-        this.store_name = store_name;
-        this.store_type = store_type;
+    public Store(String name, String type){
+        this.store_name = name;
+        this.store_type = type;
         
     }
 
