@@ -39,10 +39,6 @@ public class Role{
         return true;
     }
 
-    public boolean saveRole(){
-        return true;
-    }
-
     public boolean assignRole(){
         return true;
     }
