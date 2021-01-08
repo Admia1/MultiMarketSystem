@@ -55,5 +55,9 @@ public class Payment{
         return true;
     }
 
+    public boolean savePayment(){
+        return true;
+    }
+
 }
 

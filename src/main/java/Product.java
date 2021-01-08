@@ -93,5 +93,9 @@ public class Product{
         return true;
     }
 
+    public boolean saveProducts(){
+        return true;
+    }
+
 }
 

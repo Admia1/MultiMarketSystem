@@ -53,4 +53,10 @@ public class Store{
     public boolean searchStores(){
         return true;
     }
+
+    public boolean saveStores(){
+        return true;
+    }
+
+
 }    
