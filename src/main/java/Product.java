@@ -11,16 +11,6 @@ public class Product{
     String product_barcode;
     BigDecimal product_price;
 
-
-    public Product(String name, String brand, String date, Sting barcode, BigDecimal price){
-        this.product_name = name;
-        this.product_brand = brand;
-        this.product_date = date;
-        this.product_barcode = barcode;
-        this.product_price = price;
-    }
-
-
     public void setName(String name){
         this.product_name = name;
     }
@@ -57,8 +47,8 @@ public class Product{
         return this.product_type;
     }
 
-    public void getItems(){
-        this.product_items;
+    public String getItems(){
+        return this.product_items;
     }
 
     public String getBrand(){

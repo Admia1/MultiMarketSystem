@@ -26,8 +26,8 @@ public class Sale{
         this.sale_amount = amount;
     }
 
-    public String getDate(){
-        return this.sale_date;
+    public String getType(){
+        return this.sale_type;
     }
 
     public String getDescription(){

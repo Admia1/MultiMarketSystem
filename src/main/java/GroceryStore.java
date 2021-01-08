@@ -4,10 +4,10 @@
 import java.util.*;
 import java.sql.*;
 
-public class grocery_store {
+public class GroceryStore {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
-        Mysql_connection mysql_conn=new Mysql_connection();
+        MysqlConnection mysql_conn=new MysqlConnection();
         Connection con=mysql_conn.conn("root", "rootpass");
         
         System.out.println();
@@ -35,16 +35,6 @@ public class grocery_store {
         //consumer
         boolean loggedin=false;
         Consumer customer=new Consumer();
-        
-        // Todo
-        //del       
-        Delivery delx=new Delivery();
-        int flag1d=1;int regd=-1;
-        int delivery=0;
-        //supplier
-        Supplier sup=new Supplier();
-        int flag1s=1;int regs=-1;
-        int sup_id=0;
         
         while(true && flag!=0) {
             //admin left

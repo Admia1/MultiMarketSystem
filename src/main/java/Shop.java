@@ -7,7 +7,7 @@ public class Shop{
     String address;
     String city;
 
-    public Shop(String name, Stirng shop_manager, String address, String city){
+    public Shop(String name, String shop_manager, String address, String city){
         this.name = name;
         this.shop_manager = shop_manager;
         this.address = address;
@@ -27,16 +27,16 @@ public class Shop{
         this.city = city;
     }
 
-    public Sting getName(){
+    public String getName(){
         return name;
     }
-    public Sting getShop_manager(){
+    public String getShop_manager(){
         return shop_manager;
     }
-    public Sting getAddress(){
+    public String getAddress(){
         return address;
     }
-    public Sting getCity(){
+    public String getCity(){
         return city;
     }
 }

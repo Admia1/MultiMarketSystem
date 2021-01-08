@@ -1,9 +1,9 @@
 //package Connection;
 import java.sql.*; 
 import java.util.*;
-    class Mysql_connection{  
+    class MysqlConnection{  
     public static void main(String args[]){ 
-    	Mysql_connection co=new Mysql_connection();
+    	MysqlConnection co=new MysqlConnection();
     	Connection kk=co.conn("root", "rootpass");
     }
     Connection conn(String username,String pass) {
