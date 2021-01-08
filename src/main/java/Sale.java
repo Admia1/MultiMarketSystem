@@ -3,7 +3,7 @@ import java.math.BigDecimal;
 
 public class Sale{
 
-    String sales_type;
+    String sale_type;
     String sale_description;;
     String sale_amount;
 
@@ -14,8 +14,8 @@ public class Sale{
         
     }
 
-    public void setDate(String date){
-        this.sale_date = date;
+    public void setType(String type){
+        this.sale_type = type;
     }
 
     public void setDescription(String description){
