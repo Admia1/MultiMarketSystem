@@ -2,50 +2,83 @@ import java.util.*;
 import java.math.BigDecimal;
 
 public class Product{
-    String name;
-    String brand;
-    int date;
-    int barcode;
-    BigDecimal price;
+
+    String product_name;
+    String product_type;
+    String product_items;
+    String product_brand;
+    String product_date;
+    String product_barcode;
+    BigDecimal product_price;
 
 
-    public Product(String name, String brand, int date, int barcode, BigDecimal price){
-        this.name = name;
-        this.brand = brand;
-        this.date = date;
-        this.barcode = barcode;
-        this.price = price;
+    public Product(String name, String brand, String date, Sting barcode, BigDecimal price){
+        this.product_name = name;
+        this.product_brand = brand;
+        this.product_date = date;
+        this.product_barcode = barcode;
+        this.product_price = price;
     }
 
 
     public void setName(String name){
-        this.name = name;
+        this.product_name = name;
     }
+
+    public void setType(String type){
+        this.product_type = type;
+    }
+
+    public void setItems(String items){
+        this.product_items = items;
+    }
+
     public void setBrand(String brand){
-        this.brand = brand;
+        this.product_brand = brand;
     }
-    public void setDate(int date){
-        this.date = date;
+
+    public void setDate(String date){
+        this.product_date = date;
     }
-    public void setBarcode(int barcode){
-        this.barcode = barcode;
+
+    public void setBarcode(String barcode){
+        this.product_barcode = barcode;
     }
+
     public void setPrice(BigDecimal price){
-        this.price = price;
+        this.product_price = price;
     }
 
     public String getName(){
-        return name;
+        return this.product_name;
     }
+
+    public String getType(){
+        return this.product_type;
+    }
+
+    public void getItems(){
+        this.product_items;
+    }
+
     public String getBrand(){
-        return brand;
+        return this.product_brand;
     }
-    public int getDate(){
-        return date;
+
+    public String getDate(){
+        return this.product_date;
     }
-    public int getBarcode(){
-        return barcode;
+
+    public String getBarcode(){
+        return this.product_barcode;
     }
+
     public BigDecimal getPrice(){
-        return price;
+        return product_price;
     }
+
+    
+
+
+}
+
