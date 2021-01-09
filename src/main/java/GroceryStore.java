@@ -35,7 +35,17 @@ public class GroceryStore {
             if(flag==1)
                 {
                 if(adminlogged==0) {
-                    t=ad.admin_login(con);
+                    System.out.println("**************************************************");
+                    System.out.println("        Enter User id:");
+                    System.out.println();
+                    String loginid=sc.next();
+                    System.out.println("**************************************************");
+                    System.out.println("        Enter Password:");
+                    System.out.println();
+                    System.out.println("**************************************************");
+                    String password=sc.next();
+                    t=ad.admin_login(con, loginid, password);
+                    
                     adminlogged=1;
                 }
 
@@ -50,11 +60,24 @@ public class GroceryStore {
                     }
                     else if(choice==2)
                     {
-                        ad.edit_supplier(con);
+                        
                         continue;
                     }
                     else if(choice==3) {
-                        ad.edit_products(con);
+                        System.out.println(" __________________________________________________");
+                        System.out.println("|===================================================|");
+                        System.out.println("|                                                   |");
+                        System.out.println("|             Products Details                      |");
+                        System.out.println("|                                                   |");
+                        System.out.println("|===================================================|");
+                        System.out.println("|   1.View Product                                  |");
+                        System.out.println("|   2.Add Product                                   |");
+                        System.out.println("|   3.Update or delete a product                    |");
+                        System.out.println("|   4.Exit                                          |");
+                        System.out.println(" __________________________________________________");
+                        System.out.println("      Please enter your choice");
+                        int prod_flag=sc.nextInt();
+                        ad.edit_products(con, prod_flag);
                         continue;
                     }
                     else if(choice==4)
@@ -273,15 +296,5 @@ public class GroceryStore {
         System.out.println();
         return sc.nextInt();
     }
-
-    
-
-    
-
-
-
-
-
-
 
 }

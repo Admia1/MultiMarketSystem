@@ -9,20 +9,13 @@ import java.sql.*;
 
 public class Admin {
     Scanner sc=new Scanner(System.in); 
-    public int admin_login(Connection con) {
+
+
+    public int admin_login(Connection con, String loginid, String password) {
     try {
         Statement stmt=con.createStatement(); 
-        try {
-            
-            System.out.println("**************************************************");
-            System.out.println("        Enter User id:");
-            System.out.println();
-            String loginid=sc.next();
-            System.out.println("**************************************************");
-            System.out.println("        Enter Password:");
-            System.out.println();
-            System.out.println("**************************************************");
-            String password=sc.next();
+        try 
+        {
             ResultSet rs=stmt.executeQuery("select * from admin where admin_userid='"+loginid+"'"+ "and admin_password='"+password+"'");
             boolean isnotEmpty = rs.first();
             if(isnotEmpty) {
@@ -42,31 +35,14 @@ public class Admin {
     }
 
 
-    public void edit_supplier(Connection con)
-    {
 
-    }
-
-
-    public int edit_products(Connection con)
+    public int edit_products(Connection con, int flag)
     {
         try {
             Statement stmt=con.createStatement(); 
             try 
             {
-                System.out.println(" __________________________________________________");
-                System.out.println("|===================================================|");
-                System.out.println("|                                                   |");
-                System.out.println("|             Products Details                      |");
-                System.out.println("|                                                   |");
-                System.out.println("|===================================================|");
-                System.out.println("|   1.View Product                                  |");
-                System.out.println("|   2.Add Product                                   |");
-                System.out.println("|   3.Update or delete a product                    |");
-                System.out.println("|   4.Exit                                          |");
-                System.out.println(" __________________________________________________");
-                System.out.println("      Please enter your choice");
-                int flag=sc.nextInt();
+                
                 if(flag==1) //View Product
                 {
                     System.out.println("*******************************************************************************************************");
