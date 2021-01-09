@@ -1,12 +1,14 @@
-import java.util.*;
+package com.yam.multimarketsystem;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 
 public class Card{
     int code;
 
-    public Card(int code){
-        this.code = code;
-    }
 
     public void setCode(int code){
         this.code = code;

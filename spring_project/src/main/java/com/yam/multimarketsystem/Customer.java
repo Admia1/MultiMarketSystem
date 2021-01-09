@@ -1,15 +1,16 @@
-import java.util.*;
+package com.yam.multimarketsystem;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 
 public class Customer{
     String name;
     String family;
     int phone_number;
 
-    public Customer(String name, String family, int phone_number){
-        this.name = name;
-        this.family = family;
-        this.phone_number = phone_number;
-    }
 
     public void setName(String name){
         this.name = name;

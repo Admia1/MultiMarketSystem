@@ -1,4 +1,10 @@
-import java.util.*;
+package com.yam.multimarketsystem;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import java.math.BigDecimal;
 
 public class SalesInvoice{
@@ -8,14 +14,6 @@ public class SalesInvoice{
     int date;
     BigDecimal price;
 
-
-    public Sales_invoice(String shop_name, String shop_cashier, String customer_name, int date, BigDecimal price){
-        this.shop_name = shop_name;
-        this.shop_cashier = shop_cashier;
-        this.customer_name = customer_name;
-        this.date = date;
-        this.price = price;
-    }
 
     public void setShop_name(String shop_name){
         this.shop_name = shop_name;
@@ -43,7 +41,7 @@ public class SalesInvoice{
         return customer_name;
     }
     public int getDate(){
-        return date;    
+        return date;
     }
     public BigDecimal getPrice(){
         return price;

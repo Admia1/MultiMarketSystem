@@ -1,4 +1,10 @@
-import java.util.*;
+package com.yam.multimarketsystem;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import java.math.BigDecimal;
 
 public class Product{
@@ -8,14 +14,6 @@ public class Product{
     int barcode;
     BigDecimal price;
 
-
-    public Product(String name, String brand, int date, int barcode, BigDecimal price){
-        this.name = name;
-        this.brand = brand;
-        this.date = date;
-        this.barcode = barcode;
-        this.price = price;
-    }
 
 
     public void setName(String name){
@@ -49,3 +47,4 @@ public class Product{
     public BigDecimal getPrice(){
         return price;
     }
+}
