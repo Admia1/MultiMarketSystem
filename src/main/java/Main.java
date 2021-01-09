@@ -2,12 +2,19 @@
 import java.util.Scanner;
 import java.util.*;
 import java.sql.*;
+import java.sql.ResultSet;
 
 
 public class Main
 {
     public static void main(String args[])
     {
+        
+        //MysqlConnection mysql_conn=new MysqlConnection();
+        //Connection con=mysql_conn.conn("root", "rootpass");
+
+        
+    	
         String url = "jdbc:mysql://localhost:3306/online_grocerystore_management_system";
 		String username = "root";
 		String password = "rootpass";
@@ -25,9 +32,11 @@ public class Main
 
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
 	    	System.out.println("Database connected!");
+	    	
 			} catch (SQLException e) {
 	    throw new IllegalStateException("Cannot connect the database!", e);
 		}
+		
 
 	}
 }
