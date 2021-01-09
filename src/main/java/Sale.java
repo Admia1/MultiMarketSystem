@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 public class Sale{
 
     String sale_type;
-    String sale_description;;
+    String sale_description;
     String sale_amount;
 
     public Sale(String type, String description, String amount){

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 public class Payment{
 
     String payment_date;
-    String payment_description;;
+    String payment_description;
     String payment_amount;
 
     public Payment(String date, String description, String amount){

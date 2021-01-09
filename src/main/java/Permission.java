@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 public class Permission{
 
     String permission_title;
-    String permission_description;;
+    String permission_description;
     
 
     public void setTitle(String title){
