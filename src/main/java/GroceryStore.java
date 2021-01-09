@@ -6,25 +6,19 @@ import java.sql.*;
 
 public class GroceryStore {
     public static void main(String[] args) {
+
         Scanner sc=new Scanner(System.in);
         MysqlConnection mysql_conn=new MysqlConnection();
-        Connection con=mysql_conn.conn("root", "rootpass");
-        
-        System.out.println();
-        System.out.println("--------------------------------------------------------------");
-        System.out.println("**************************************************************");
-        System.out.println("                  WELCOME TO GROCERY PORTAL");
-        System.out.println("**************************************************************");
-        System.out.println("--------------------------------------------------------------");
-        System.out.println();
-        System.out.println("Press 1 to continue as Admin \nPress 2 to continue as Customer \n");
-        System.out.println("Press 0 to exit");
-        System.out.println();
+        Connection con=mysql_conn.connect();
 
-        int input1=sc.nextInt();
+        int input1=entry_menu(sc);
         int flag=0;
-        if(input1==1) flag=1;
-        if(input1==2) flag=2; //Consumer
+        // Admin
+        if(input1==1) 
+            flag=1;
+        // Consumer
+        if(input1==2) 
+            flag=2; 
         
         /// global variables
         ///takes care of continuous work flow
@@ -40,31 +34,15 @@ public class GroceryStore {
             //admin left
             if(flag==1)
                 {
-            if(adminlogged==0) {
-                t=ad.admin_login(con);
-                adminlogged=1;
-            }
+                if(adminlogged==0) {
+                    t=ad.admin_login(con);
+                    adminlogged=1;
+                }
 
                 if(t==1) 
                 {
                     int choice=1;
-                    System.out.println(" __________________________________________________");
-                    System.out.println("|===================================================|");
-                    System.out.println("|                                                   |");
-                    System.out.println("|        Welcome to the Admin Menu                  |");
-                    System.out.println("|                                                   |");
-                    System.out.println("|===================================================|");
-                    System.out.println("|                                                   |");
-                    System.out.println("|1. View/Update/Delete Consumer                     |");
-                    System.out.println("|2. View/Update/Delete Supplier (not ready)         |");
-                    System.out.println("|3. View/Update/Delete Products                     |");
-                    System.out.println("|4. View/Update/Delete Delievery(not ready)         |");
-                    System.out.println("|5. View/Update/Delete Categories                   |");
-                    System.out.println("|6. View Feedback                                   |");
-                    System.out.println("|7. Exit                                            |");
-                    System.out.println("|___________________________________________________|");
-                    System.out.println("Please choose your option: ");
-                    choice=sc.nextInt();
+                    choice=admin_menu(sc);
                     if(choice==1)
                     {
                         ad.edit_customer(con);
@@ -90,7 +68,7 @@ public class GroceryStore {
                         ad.view_feedback(con); continue;}
                     else {
                         System.out.println("===================================================");
-                        System.out.println("                Logout successfull                  ");
+                        System.out.println("                Logout successfull                 ");
                         System.out.println("===================================================");
                         break;
                     }
@@ -98,7 +76,8 @@ public class GroceryStore {
                 
                 }
                 else
-                {   System.out.println("===================================================");
+                {   
+                    System.out.println("===================================================");
                     System.out.println(" OOPS!! Login Unsuccessfull!! :( Please try again");
                     System.out.println("===================================================");
                     System.out.println("Press 0 to exit and press 1 to try again");
@@ -114,22 +93,10 @@ public class GroceryStore {
             //consumer part
             if(flag==2) {
                 
-                
                 try {
                     if(!loggedin) {
-                        System.out.println("--------------------------------------------------------------");
-                        System.out.println("**************************************************************");
-                        System.out.println("                 Welcome to Consumer Portal");
-                        System.out.println("**************************************************************");
-                        System.out.println("--------------------------------------------------------------");   
-                        System.out.println();
                         
-                        System.out.println("Press 1 to register to our portal as a new user");
-                        System.out.println("Press 2 to log in");
-                        System.out.println("Press 0 to exit");
-                        System.out.println();
-                        System.out.println("--------------------------------------------------------------");
-                        int flag1=sc.nextInt();
+                        int flag1=consumer_login_menu(sc);
                         if(flag1==1) { //register
                             int reg=customer.customer_register(con);
                             if(reg==0) {
@@ -165,21 +132,9 @@ public class GroceryStore {
                         if(flag1==0) break;
                     }
                     if(loggedin) {
-                        System.out.println();
-                        System.out.println("--------------------------------------------------------------");
-                        System.out.println();
-                        System.out.println("Press 1 to display all items");
-                        System.out.println("Press 2 to see products by category");
-                        System.out.println("Press 3 to search and add product to cart");
-                        System.out.println("Press 4 to checkout");
-                        System.out.println("Press 5 to rate previously ordered products");
-                        System.out.println("Press 0 to exit");
-                        System.out.println();
-                        System.out.println("--------------------------------------------------------------");
-                        System.out.println();
+                        
 
-
-                        int item_flag=sc.nextInt();
+                        int item_flag=consumer_menu(sc);
                         if(item_flag==1) { //display all items
                             int noerr=customer.showresult(con, item_flag);
                             if(noerr==0) {
@@ -240,18 +195,93 @@ public class GroceryStore {
                     System.out.println(e);
                 }
             }
-            
-            
-            
+             
             
             else {
                 break;
             }
         }
-        System.out.println("Exit Successful");
+        System.out.println("Exit Successful\n");
+        System.out.println("--------------------------------------------------------------\n");
+    }
+
+
+
+
+    public static int entry_menu(Scanner sc){
+        System.out.println();
+        System.out.println("--------------------------------------------------------------");
+        System.out.println("**************************************************************");
+        System.out.println("                  WELCOME TO GROCERY PORTAL");
+        System.out.println("**************************************************************");
+        System.out.println("--------------------------------------------------------------");
+        System.out.println();
+        System.out.println("Press 1 to continue as Admin \nPress 2 to continue as Customer \n");
+        System.out.println("Press 0 to exit");
+        System.out.println();
+        return sc.nextInt();
+    }
+
+
+    public static int admin_menu(Scanner sc){
+        System.out.println(" __________________________________________________");
+        System.out.println("|===================================================|");
+        System.out.println("|                                                   |");
+        System.out.println("|        Welcome to the Admin Menu                  |");
+        System.out.println("|                                                   |");
+        System.out.println("|===================================================|");
+        System.out.println("|                                                   |");
+        System.out.println("|1. View/Update/Delete Consumer                     |");
+        System.out.println("|2. View/Update/Delete Supplier (not ready)         |");
+        System.out.println("|3. View/Update/Delete Products                     |");
+        System.out.println("|4. View/Update/Delete Delievery(not ready)         |");
+        System.out.println("|5. View/Update/Delete Categories                   |");
+        System.out.println("|6. View Feedback                                   |");
+        System.out.println("|7. Exit                                            |");
+        System.out.println("|___________________________________________________|");
+        System.out.println("Please choose your option: ");
+        return sc.nextInt();
+    }
+
+
+    public static int consumer_login_menu(Scanner sc){
+        System.out.println("--------------------------------------------------------------");
+        System.out.println("**************************************************************");
+        System.out.println("                 Welcome to Consumer Portal");
+        System.out.println("**************************************************************");
+        System.out.println("--------------------------------------------------------------");   
+        System.out.println();
+        System.out.println("Press 1 to register to our portal as a new user");
+        System.out.println("Press 2 to log in");
+        System.out.println("Press 0 to exit");
+        System.out.println();
+        System.out.println("--------------------------------------------------------------");
+        return sc.nextInt();
+    }
+
+    public static int consumer_menu(Scanner sc){
+        System.out.println("--------------------------------------------------------------");
+        System.out.println();
+        System.out.println("Press 1 to display all items");
+        System.out.println("Press 2 to see products by category");
+        System.out.println("Press 3 to search and add product to cart");
+        System.out.println("Press 4 to checkout");
+        System.out.println("Press 5 to rate previously ordered products");
+        System.out.println("Press 0 to exit");
         System.out.println();
         System.out.println("--------------------------------------------------------------");
         System.out.println();
+        return sc.nextInt();
     }
+
+    
+
+    
+
+
+
+
+
+
 
 }
