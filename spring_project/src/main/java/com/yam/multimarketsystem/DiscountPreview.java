@@ -7,11 +7,19 @@ import javax.persistence.Id;
 
 
 @Entity
-public class Card{
+public class DiscountPreview {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
-  private String code;
+  private String name;
+
+  private Integer discountId;
+
+  private Integer limitToBuy;
+  //how many discount tickers to sell
+
+  private Integer price;
+
 
 }

@@ -5,46 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import java.math.BigDecimal;
-
+@Entity
 public class Product{
-    String name;
-    String brand;
-    int date;
-    int barcode;
-    BigDecimal price;
+  @Id
+  @GeneratedValue(strategy=GenerationType.AUTO)
+  private Integer id;
 
+  private String name;
+  private String brand;
+  private String barcode;
 
-
-    public void setName(String name){
-        this.name = name;
-    }
-    public void setBrand(String brand){
-        this.brand = brand;
-    }
-    public void setDate(int date){
-        this.date = date;
-    }
-    public void setBarcode(int barcode){
-        this.barcode = barcode;
-    }
-    public void setPrice(BigDecimal price){
-        this.price = price;
-    }
-
-    public String getName(){
-        return name;
-    }
-    public String getBrand(){
-        return brand;
-    }
-    public int getDate(){
-        return date;
-    }
-    public int getBarcode(){
-        return barcode;
-    }
-    public BigDecimal getPrice(){
-        return price;
-    }
 }

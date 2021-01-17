@@ -6,16 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
-public class City{
-    String name;
+@Entity
+public class City {
+  @Id
+  @GeneratedValue(strategy=GenerationType.AUTO)
+  private Integer id;
+
+  private String name;
 
 
 
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public String getName(){
-        return name;
-    }
 }

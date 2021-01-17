@@ -5,13 +5,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity
-public class Card{
+public class ScoreStrategy {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
-  private String code;
+  private Integer minimumPurchaseUnit;
+  private Integer scorePerUnit;
+
+  public Integer getScoreOfPurchase(){
+    return 0;
+  }
 
 }

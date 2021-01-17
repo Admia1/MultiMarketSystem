@@ -5,13 +5,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity
-public class Card{
+public class DiscountTicketCustomerSalesInvoice {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
-  private String code;
+  private Integer discountTicketID;
+  private Integer salesInvoiceId;
 
 }

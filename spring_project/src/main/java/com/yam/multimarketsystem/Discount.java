@@ -7,11 +7,13 @@ import javax.persistence.Id;
 
 
 @Entity
-public class Card{
+public class Discount{
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
-  private String code;
+  private String name;
+
+  private Integer discountStrategyId;
 
 }
