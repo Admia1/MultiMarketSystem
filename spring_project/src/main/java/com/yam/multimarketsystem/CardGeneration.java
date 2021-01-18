@@ -4,18 +4,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
+
 
 @Entity
-public class ScoreStrategy {
+public class CardGeneration{
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
-  private Integer minimumPurchaseUnit;
-  private Integer scorePerUnit;
+  private String name;
 
-  public Integer getScoreOfPurchase(Integer purchasePrice){
-    return 0;
-  }
+  private Boolean isPublished = false;
 
 }

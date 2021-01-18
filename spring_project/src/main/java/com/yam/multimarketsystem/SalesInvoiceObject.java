@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import java.math.BigDecimal;
+import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
 
 
 @Entity
@@ -14,8 +16,12 @@ public class SalesInvoiceObject {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
-  private Integer sealesInvoiceId;
-  private Integer productId;
+  @ManyToOne(fetch=FetchType.LAZY)
+  private SalesInvoice sealesInvoice;
+
+  @ManyToOne(fetch=FetchType.LAZY)
+  private Product product;
+
   private Integer quantity; //number or weight in gram
   private Integer overAllPrice;
 

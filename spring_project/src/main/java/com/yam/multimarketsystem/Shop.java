@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
+
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Shop {
@@ -12,6 +15,8 @@ public class Shop {
   private Integer id;
 
   private String name;
-  private Integer addressId;
+  
+  @ManyToOne(fetch=FetchType.LAZY)
+  private Address address;
 
 }

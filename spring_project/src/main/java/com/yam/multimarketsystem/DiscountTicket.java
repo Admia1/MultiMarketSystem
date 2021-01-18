@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
 
 
 @Entity
@@ -12,9 +14,11 @@ public class DiscountTicket{
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
-  private Integer userId;
+  @ManyToOne(fetch=FetchType.LAZY)
+  private User user;
 
-  private Integer discountPreviewId;
+  @ManyToOne(fetch=FetchType.LAZY)
+  private DiscountPreview discountPreview;
 
 
 }

@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
 
 @Entity
 public class Owner {
@@ -11,8 +13,10 @@ public class Owner {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
-  private Integer shopId;
+  @ManyToOne(fetch=FetchType.LAZY)
+  private Shop shop;
 
-  private Integer personId;
+  @ManyToOne(fetch=FetchType.LAZY)
+  private Person person;
 
 }
