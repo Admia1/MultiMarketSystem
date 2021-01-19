@@ -17,4 +17,6 @@ public class Customer {
   @ManyToOne(fetch=FetchType.LAZY)
   private Person person;
 
+  @OneToOne(fetch=FetchType.LAZY)
+  private Card card;
 }
