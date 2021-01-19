@@ -24,5 +24,43 @@ public class DiscountPreview {
 
   private Integer price;
 
+  public Integer getId() {
+    return id;
+  }
 
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Discount getDiscount() {
+    return discount;
+  }
+
+  public void setDiscount(Discount discount) {
+    this.discount = discount;
+  }
+
+  public Integer getLimitToBuy() {
+    return limitToBuy;
+  }
+
+  public void setLimitToBuy(Integer limitToBuy) {
+    this.limitToBuy = limitToBuy;
+  }
+
+  public Integer getPrice() {
+    return price;
+  }
+
+  public void setPrice(Integer price) {
+    this.price = price;
+  }
 }

@@ -19,4 +19,27 @@ public class CustomerSalesInvoice {
   @ManyToOne(fetch=FetchType.LAZY)
   private SalesInvoice salesInvoice;
 
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public Customer getCustomer() {
+    return customer;
+  }
+
+  public void setCustomer(Customer customer) {
+    this.customer = customer;
+  }
+
+  public SalesInvoice getSalesInvoice() {
+    return salesInvoice;
+  }
+
+  public void setSalesInvoice(SalesInvoice salesInvoice) {
+    this.salesInvoice = salesInvoice;
+  }
 }

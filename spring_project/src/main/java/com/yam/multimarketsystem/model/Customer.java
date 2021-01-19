@@ -19,4 +19,28 @@ public class Customer {
 
   @OneToOne(fetch=FetchType.LAZY)
   private Card card;
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public Person getPerson() {
+    return person;
+  }
+
+  public void setPerson(Person person) {
+    this.person = person;
+  }
+
+  public Card getCard() {
+    return card;
+  }
+
+  public void setCard(Card card) {
+    this.card = card;
+  }
 }

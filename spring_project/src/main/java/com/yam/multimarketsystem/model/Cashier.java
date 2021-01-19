@@ -19,4 +19,27 @@ public class Cashier {
   @ManyToOne(fetch=FetchType.LAZY)
   private Shop shop;
 
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public Person getPerson() {
+    return person;
+  }
+
+  public void setPerson(Person person) {
+    this.person = person;
+  }
+
+  public Shop getShop() {
+    return shop;
+  }
+
+  public void setShop(Shop shop) {
+    this.shop = shop;
+  }
 }
