@@ -1,11 +1,6 @@
 package com.yam.multimarketsystem.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.FetchType;
+import javax.persistence.*;
 
 @Entity
 public class Address {
@@ -42,4 +37,3 @@ public class Address {
     this.city = city;
   }
 }
-
