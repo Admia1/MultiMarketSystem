@@ -1,13 +1,13 @@
 ### Before
 
- to Run this application following dependencies are needed.
+ to run this application following dependencies are needed:
  java 8
  mysql
  maven
 
 ### Setup Database
 
- mysql < script/initialDatabase.sql
+ sudo mysql < script/initialDatabase.sql
 
 ### Run
 

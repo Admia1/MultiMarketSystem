@@ -9,6 +9,6 @@ Classes ==> Classes
 Mariadb ==> mariadb_setup
 
 
-to run the spring project run this command on Unix:
+### Run :
+ To run spring project cd spring_project directory and follow README file.
 
-./spring_project/mvnw spring-boot:run
