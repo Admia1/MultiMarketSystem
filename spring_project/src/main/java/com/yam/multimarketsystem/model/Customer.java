@@ -9,10 +9,10 @@ public class Customer {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   private Person person;
 
-  @OneToOne(fetch=FetchType.LAZY)
+  @OneToOne(fetch=FetchType.EAGER)
   private Card card;
 
   public Integer getId() {
