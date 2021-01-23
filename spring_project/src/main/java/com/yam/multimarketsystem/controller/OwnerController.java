@@ -129,7 +129,7 @@ public class OwnerController {
 
   }
 
-  @PostMapping("/{id}/allCashiers")
+  @GetMapping("/{id}/allCashiers")
   public @ResponseBody Iterable<Cashier> getAllCashiersOfShop(@PathVariable(value = "id") Integer shopId){
     Optional<Shop> o_shop = shopRepository.findById(shopId);
     if(o_shop.isEmpty())
