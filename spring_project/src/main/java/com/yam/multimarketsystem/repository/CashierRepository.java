@@ -12,6 +12,7 @@ import java.util.List;
 
 public interface CashierRepository extends CrudRepository<Cashier, Integer> {
   public Optional<Cashier> findById(Integer id);
-  public List<Cashier> findByShop(Shop shop);
-  public Optional<Cashier> findByPersonAndShop(Person person, Shop shop);
+  public List<Cashier> findByShopAndIsDeletedFalse(Shop shop);
+  public Optional<Cashier> findByPersonAndShopAndIsDeletedFalse(Person person, Shop shop);
+  public Optional<Cashier> findByIdAndShopAndIsDeletedFalse(Integer id, Shop shop);
 }

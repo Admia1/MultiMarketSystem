@@ -14,12 +14,10 @@ public class Cashier {
   @ManyToOne(fetch=FetchType.EAGER)
   private Shop shop;
 
+  private Boolean isDeleted = false;
+
   public Integer getId() {
     return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
   }
 
   public Person getPerson() {
@@ -36,5 +34,9 @@ public class Cashier {
 
   public void setShop(Shop shop) {
     this.shop = shop;
+  }
+
+  public void delete(){
+    this.isDeleted = true;
   }
 }

@@ -117,7 +117,7 @@ public class OwnerController {
     if(o_shop.isEmpty())
       return "Bad Shop id";
 
-    if (cashierRepository.findByPersonAndShop(person, o_shop.get()).isPresent())
+    if (cashierRepository.findByPersonAndShopAndIsDeletedFalse(person, o_shop.get()).isPresent())
       return "Thos person is allredy registered in this shop";
 
     Cashier n_cashier = new Cashier();
@@ -135,6 +135,25 @@ public class OwnerController {
     if(o_shop.isEmpty())
       return null;
 
-    return cashierRepository.findByShop(o_shop.get());
+    return cashierRepository.findByShopAndIsDeletedFalse(o_shop.get());
   }
+
+  @PostMapping("/{id}/deleteCashier")
+  public @ResponseBody String getAllCashiersOfShop(@PathVariable(value = "id") Integer shopId, Integer cashierId){
+    Optional<Shop> o_shop = shopRepository.findById(shopId);
+    if(o_shop.isEmpty())
+      return "Bad shop id";
+
+    Optional<Cashier> o_cashier = cashierRepository.findByIdAndShopAndIsDeletedFalse(cashierId, o_shop.get());
+    if(o_cashier.isEmpty())
+      return "No undeleted cashier is matching to given ides";
+
+    Cashier cashier = o_cashier.get();
+    cashier.delete();
+    cashierRepository.save(cashier);
+
+    return "Asked Cashier is deleted";
+
+  }
+
 }
