@@ -4,9 +4,9 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.yam.multimarketsystem.model.ScoreStrategy;
 
-// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
-// CRUD refers Create, Read, Update, Delete
+import java.util.List;
+import java.util.Optional;
 
 public interface ScoreStrategyRepository extends CrudRepository<ScoreStrategy, Integer> {
-
+  List<ScoreStrategy> findAll();
 }

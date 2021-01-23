@@ -11,10 +11,10 @@ public class SalesInvoice {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   private Shop shop;
 
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   private Cashier cashier;
 
   public Integer getId() {

@@ -7,10 +7,10 @@ public class DiscountTicketCustomerSalesInvoice {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   private DiscountTicket discountTicket;
 
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   private SalesInvoice salesInvoice;
 
   public Integer getId() {

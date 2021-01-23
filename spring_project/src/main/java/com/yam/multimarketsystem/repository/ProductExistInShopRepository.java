@@ -3,10 +3,14 @@ package com.yam.multimarketsystem.repository;
 import org.springframework.data.repository.CrudRepository;
 
 import com.yam.multimarketsystem.model.ProductExistInShop;
+import com.yam.multimarketsystem.model.Product;
 
-// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
-// CRUD refers Create, Read, Update, Delete
+import java.util.List;
+import java.util.Optional;
+
 
 public interface ProductExistInShopRepository extends CrudRepository<ProductExistInShop, Integer> {
-
+  List<ProductExistInShop> findByProduct(Product product);
+  Optional<ProductExistInShop> findById(Integer id);
+  List<ProductExistInShop> findByProductBarcode(String barcode);
 }

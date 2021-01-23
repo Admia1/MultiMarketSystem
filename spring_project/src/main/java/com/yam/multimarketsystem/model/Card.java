@@ -14,7 +14,7 @@ public class Card{
 
   private String code;
 
-  // @ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+  // @ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
   // @JoinColumn(name = "cardGeneration_id)
   @ManyToOne(fetch=FetchType.EAGER)
   private CardGeneration cardGeneration;

@@ -26,8 +26,8 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.Optional;
 
-@Controller // This means that this class is a Controller
-@RequestMapping(path="/cus") // This means URL's start with /demo (after Application path)
+@Controller
+@RequestMapping(path="/cus")
 public class CustomerController {
   @Autowired
   private PersonRepository personRepository;
@@ -35,48 +35,37 @@ public class CustomerController {
   private CustomerRepository customerRepository;
   @Autowired
   private CardRepository cardRepository;
-  @Autowired
-  private NameRepository nameRepository;
 
-  @PostMapping(path="/reg") // Map ONLY POST Requests
-  public @ResponseBody String registerNewCustomer (@RequestParam String name
-      , @RequestParam String contact, @RequestParam String cardCode) {
+  @PostMapping(path="/reg")
+  public @ResponseBody String registerNewCustomer (@RequestParam String contact, @RequestParam String cardCode) {
 
-    if(personRepository.findByContact(contact) != null){
-      return "This Contact Have been Registered before";
+    Optional<Person> o_person = personRepository.findByContact(contact);
+    if(o_person.isEmpty()){
+      return "Register yourself using contact first";
     }
 
-    Optional<Card> card = cardRepository.findByCode(cardCode);
-    if(card == null){
+    Optional<Card> o_card = cardRepository.findByCode(cardCode);
+    if(o_card.isEmpty()){
       return "Bad card code";
     }
 
-    Card toSetCard = card.get();
-
-    if(customerRepository.findByCard(toSetCard) != null){
+    if(customerRepository.findByCard(o_card.get()).isPresent()){
       return "This card is belonged to someone else";
     }
 
-    Person n_person = new Person();
-    Name n_name = new Name();
     Customer n_customer = new Customer();
 
-    n_person.setContact(contact);
-    n_name.setPerson(n_person);
-    n_name.setName(name);
-    n_customer.setPerson(n_person);
-    n_customer.setCard(toSetCard);
+    n_customer.setPerson(o_person.get());
+    n_customer.setCard(o_card.get());
 
-    personRepository.save(n_person);
     customerRepository.save(n_customer);
-    nameRepository.save(n_name);
 
     return "Registered";
   }
 
   @GetMapping("/{id}/info")
-  public @ResponseBody Optional<Person> getCustomerById(@PathVariable(value = "id") Integer id){
-    return personRepository.findById(id);
+  public @ResponseBody Optional<Customer> getCustomerInfoById(@PathVariable(value = "id") Integer id){
+    return customerRepository.findById(id);
   }
 
 

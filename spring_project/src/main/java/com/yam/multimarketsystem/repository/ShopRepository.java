@@ -4,9 +4,9 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.yam.multimarketsystem.model.Shop;
 
-// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
-// CRUD refers Create, Read, Update, Delete
+import java.util.Optional;
+import java.util.List;
 
 public interface ShopRepository extends CrudRepository<Shop, Integer> {
-
+  public List<Shop> findAll();
 }

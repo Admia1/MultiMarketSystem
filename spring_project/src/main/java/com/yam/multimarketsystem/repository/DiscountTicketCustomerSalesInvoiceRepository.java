@@ -4,8 +4,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.yam.multimarketsystem.model.DiscountTicketCustomerSalesInvoice;
 
-// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
-// CRUD refers Create, Read, Update, Delete
+import java.util.List;
+import java.util.Optional;
 
 public interface DiscountTicketCustomerSalesInvoiceRepository extends CrudRepository<DiscountTicketCustomerSalesInvoice, Integer> {
 

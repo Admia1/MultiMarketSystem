@@ -11,7 +11,7 @@ public class DiscountPreview {
 
   private String name;
 
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   private Discount discount;
 
   private Integer limitToBuy;

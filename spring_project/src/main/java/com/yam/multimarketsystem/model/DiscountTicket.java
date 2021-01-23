@@ -9,10 +9,10 @@ public class DiscountTicket{
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
-  @ManyToOne(fetch=FetchType.LAZY)
-  private User user;
+  @ManyToOne(fetch=FetchType.EAGER)
+  private Customer customer;
 
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   private DiscountPreview discountPreview;
 
   public Integer getId() {
@@ -23,12 +23,12 @@ public class DiscountTicket{
     this.id = id;
   }
 
-  public User getUser() {
-    return user;
+  public Customer getCustomer() {
+    return customer;
   }
 
-  public void setUser(User user) {
-    this.user = user;
+  public void setCustomer(Customer customer) {
+    this.customer = customer;
   }
 
   public DiscountPreview getDiscountPreview() {

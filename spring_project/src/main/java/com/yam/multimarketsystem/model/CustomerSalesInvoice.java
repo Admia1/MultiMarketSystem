@@ -8,10 +8,10 @@ public class CustomerSalesInvoice {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   private Customer customer;
 
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   private SalesInvoice salesInvoice;
 
   public Integer getId() {

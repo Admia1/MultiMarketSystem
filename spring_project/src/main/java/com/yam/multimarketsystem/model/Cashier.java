@@ -8,10 +8,10 @@ public class Cashier {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   private Person person;
 
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   private Shop shop;
 
   public Integer getId() {

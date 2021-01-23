@@ -3,7 +3,7 @@ package com.yam.multimarketsystem.model;
 import javax.persistence.*;
 
 
-@Entity // This tells Hibernate to make a table out of this class
+@Entity
 public class Customer {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)

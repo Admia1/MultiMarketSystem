@@ -11,10 +11,10 @@ public class SalesInvoiceObject {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
-  @ManyToOne(fetch=FetchType.LAZY)
-  private SalesInvoice sealesInvoice;
+  @ManyToOne(fetch=FetchType.EAGER)
+  private SalesInvoice salesInvoice;
 
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   private Product product;
 
   public Integer getId() {
@@ -25,12 +25,12 @@ public class SalesInvoiceObject {
     this.id = id;
   }
 
-  public SalesInvoice getSealesInvoice() {
-    return sealesInvoice;
+  public SalesInvoice getSalesInvoice() {
+    return salesInvoice;
   }
 
-  public void setSealesInvoice(SalesInvoice sealesInvoice) {
-    this.sealesInvoice = sealesInvoice;
+  public void setSalesInvoice(SalesInvoice salesInvoice) {
+    this.salesInvoice = salesInvoice;
   }
 
   public Product getProduct() {

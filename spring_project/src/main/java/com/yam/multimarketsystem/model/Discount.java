@@ -11,7 +11,7 @@ public class Discount{
 
   private String name;
 
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   private DiscountStrategy discountStrategy;
 
   public Integer getId() {

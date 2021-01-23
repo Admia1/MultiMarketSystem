@@ -6,11 +6,11 @@ import com.yam.multimarketsystem.model.Customer;
 import com.yam.multimarketsystem.model.Card;
 
 import java.util.List;
-// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
-// CRUD refers Create, Read, Update, Delete
+import java.util.Optional;
 
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
   public List<Customer> findAll();
-  public Customer findByCard(Card card);
+  public Optional<Customer> findByCard(Card card);
+  public Optional<Customer> findById(Integer id);
 
 }

@@ -3,10 +3,11 @@ package com.yam.multimarketsystem.repository;
 import org.springframework.data.repository.CrudRepository;
 
 import com.yam.multimarketsystem.model.DiscountTicket;
+import com.yam.multimarketsystem.model.Customer;
 
-// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
-// CRUD refers Create, Read, Update, Delete
+import java.util.List;
+import java.util.Optional;
 
 public interface DiscountTicketRepository extends CrudRepository<DiscountTicket, Integer> {
-
+  List<DiscountTicket> findByCustomer(Customer customer);
 }

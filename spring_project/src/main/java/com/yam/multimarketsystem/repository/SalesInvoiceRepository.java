@@ -3,10 +3,14 @@ package com.yam.multimarketsystem.repository;
 import org.springframework.data.repository.CrudRepository;
 
 import com.yam.multimarketsystem.model.SalesInvoice;
+import com.yam.multimarketsystem.model.Shop;
+import com.yam.multimarketsystem.model.Cashier;
 
-// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
-// CRUD refers Create, Read, Update, Delete
+import java.util.List;
+import java.util.Optional;
 
 public interface SalesInvoiceRepository extends CrudRepository<SalesInvoice, Integer> {
-
+  public Optional<SalesInvoice> findById(Integer id);
+  public List<SalesInvoice> findByShop(Shop shop);
+  public List<SalesInvoice> findByCashier(Cashier cashier);
 }

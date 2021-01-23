@@ -59,7 +59,7 @@ public class CardController {
   public @ResponseBody Iterable<Card> getCards() {
     return cardRepository.findAll();
   }
-  
+
   @GetMapping(path="/allgens")
   public @ResponseBody Iterable<CardGeneration> getCardGenerations() {
     return cardGenerationRepository.findAll();
@@ -68,7 +68,7 @@ public class CardController {
   @GetMapping(path="/gen/{id}/activate")
   public @ResponseBody String activateCardGeneration(@PathVariable(value = "id") Integer id) {
     Optional<CardGeneration> cardGeneration = cardGenerationRepository.findById(id);
-    if (cardGeneration == null)
+    if (cardGeneration.isEmpty())
       return "bad generation id";
 
     CardGeneration cg = cardGeneration.get();
@@ -81,7 +81,7 @@ public class CardController {
   @GetMapping(path="/gen/{id}")
   public @ResponseBody List<Card> getCardGeneration(@PathVariable(value = "id") Integer id) {
     Optional<CardGeneration> cardGeneration = cardGenerationRepository.findById(id);
-    if (cardGeneration == null)
+    if (cardGeneration.isEmpty())
       return null;
 
     return cardRepository.findByCardGeneration(cardGeneration.get());
@@ -89,13 +89,13 @@ public class CardController {
 
   @GetMapping(path="/card/{id}/discard")
   public @ResponseBody String discardCard(@PathVariable(value = "id") Integer id) {
-    Optional<Card> card = cardRepository.findById(id);
-    if (card == null)
+    Optional<Card> o_card = cardRepository.findById(id);
+    if (o_card.isEmpty())
       return "bad card id";
 
-    Card c = card.get();
-    c.discard();
-    cardRepository.save(c);
+    Card card = o_card.get();
+    card.discard();
+    cardRepository.save(card);
 
     return "card " + id.toString() + " discarded";
   }
@@ -103,7 +103,7 @@ public class CardController {
   @GetMapping(path="/card/{id}")
   public @ResponseBody Optional<Card> getCard(@PathVariable(value = "id") Integer id) {
     Optional<Card> o_card = cardRepository.findById(id);
-    if (o_card == null)
+    if (o_card.isEmpty())
       return null;
 
     return o_card;

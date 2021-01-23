@@ -11,7 +11,7 @@ public class Shop {
 
   private String name;
 
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   private Address address;
 
   public Integer getId() {

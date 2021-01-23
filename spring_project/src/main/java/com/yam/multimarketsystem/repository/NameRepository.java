@@ -3,10 +3,12 @@ package com.yam.multimarketsystem.repository;
 import org.springframework.data.repository.CrudRepository;
 
 import com.yam.multimarketsystem.model.Name;
+import com.yam.multimarketsystem.model.Person;
 
-// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
-// CRUD refers Create, Read, Update, Delete
+import java.util.List;
+import java.util.Optional;
 
 public interface NameRepository extends CrudRepository<Name, Integer> {
+  List<Name> findByPerson(Person person);
 
 }

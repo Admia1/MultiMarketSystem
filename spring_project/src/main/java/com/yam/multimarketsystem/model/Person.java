@@ -10,10 +10,9 @@ public class Person {
   @Column(name = "id")
   private Integer id;
 
-  @Column(unique = true)
-  private String contact;
 
-  private String firstName;
+  //@Column(unique = true)// It look hader than what i thinked it is to handel
+  private String contact;
 
   public Integer getId() {
     return id;

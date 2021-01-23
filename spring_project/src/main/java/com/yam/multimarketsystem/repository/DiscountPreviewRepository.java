@@ -4,9 +4,10 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.yam.multimarketsystem.model.DiscountPreview;
 
-// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
-// CRUD refers Create, Read, Update, Delete
+import java.util.Optional;
+import java.util.List;
 
 public interface DiscountPreviewRepository extends CrudRepository<DiscountPreview, Integer> {
-
+  Optional<DiscountPreview> findById(Integer id);
+  List<DiscountPreview> findAll();
 }

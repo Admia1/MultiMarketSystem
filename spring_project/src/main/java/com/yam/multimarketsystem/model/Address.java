@@ -10,7 +10,7 @@ public class Address {
 
   private String detail;
 
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   private City city;
 
   public Integer getId() {
