@@ -1,7 +1,7 @@
 ### Before
 
  to run this application following dependencies are needed:
- java 8
+ java 11
  mysql
  maven
 
