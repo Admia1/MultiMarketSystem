@@ -10,5 +10,5 @@ import java.util.Optional;
 
 public interface SalesInvoiceObjectRepository extends CrudRepository<SalesInvoiceObject, Integer> {
   List<SalesInvoiceObject> findBySalesInvoice(SalesInvoice salesInvoice);
-  Optional<SalesInvoiceObject> findById(Integer id);
+  Optional<SalesInvoiceObject> findByIdAndSalesInvoice(Integer id, SalesInvoice salesInvoice);
 }

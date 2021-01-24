@@ -17,12 +17,10 @@ public class ProductExistInShop{
   private Integer quantity;
   private Integer pricePerUnit;
 
+  private Boolean isDeleted=false;
+
   public Integer getId() {
     return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
   }
 
   public Shop getShop() {
@@ -55,5 +53,9 @@ public class ProductExistInShop{
 
   public void setPricePerUnit(Integer pricePerUnit) {
     this.pricePerUnit = pricePerUnit;
+  }
+
+  public void delete() {
+    this.isDeleted = true;
   }
 }

@@ -17,6 +17,23 @@ public class SalesInvoice {
   @ManyToOne(fetch=FetchType.EAGER)
   private Cashier cashier;
 
+  private Boolean isFinished = false;
+  private Boolean isDeleted = false;
+
+  public Boolean finish(){
+    if (this.isDeleted)
+      return false;
+    this.isFinished = true;
+    return true;
+  }
+
+  public Boolean delete(){
+    if (this.isFinished)
+      return false;
+    this.isDeleted = true;
+    return true;
+  }
+
   public Integer getId() {
     return id;
   }
@@ -41,13 +58,4 @@ public class SalesInvoice {
     this.cashier = cashier;
   }
 
-  public Boolean getFinished() {
-    return finished;
-  }
-
-  public void setFinished(Boolean finished) {
-    this.finished = finished;
-  }
-
-  private Boolean finished;
 }

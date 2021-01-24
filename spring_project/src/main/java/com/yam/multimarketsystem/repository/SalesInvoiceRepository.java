@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface SalesInvoiceRepository extends CrudRepository<SalesInvoice, Integer> {
-  public Optional<SalesInvoice> findById(Integer id);
+  public Optional<SalesInvoice> findByIdAndIsDeletedFalseAndIsFinishedFalse(Integer id);
   public List<SalesInvoice> findByShop(Shop shop);
   public List<SalesInvoice> findByCashier(Cashier cashier);
 }

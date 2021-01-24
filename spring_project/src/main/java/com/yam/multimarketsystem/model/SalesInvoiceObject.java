@@ -15,14 +15,19 @@ public class SalesInvoiceObject {
   private SalesInvoice salesInvoice;
 
   @ManyToOne(fetch=FetchType.EAGER)
-  private Product product;
+  private ProductExistInShop productExistInShop;
 
+  private Integer quantity; //number or weight in gram
+
+  private Integer overAllPrice;
+
+  private Boolean isDeleted = false;
+
+  public void delete(){
+    this.isDeleted = true;
+  }
   public Integer getId() {
     return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
   }
 
   public SalesInvoice getSalesInvoice() {
@@ -33,12 +38,12 @@ public class SalesInvoiceObject {
     this.salesInvoice = salesInvoice;
   }
 
-  public Product getProduct() {
-    return product;
+  public ProductExistInShop getProductExistInShop() {
+    return productExistInShop;
   }
 
-  public void setProduct(Product product) {
-    this.product = product;
+  public void setProductExistInShop(ProductExistInShop productExistInShop) {
+    this.productExistInShop = productExistInShop;
   }
 
   public Integer getQuantity() {
@@ -56,8 +61,5 @@ public class SalesInvoiceObject {
   public void setOverAllPrice(Integer overAllPrice) {
     this.overAllPrice = overAllPrice;
   }
-
-  private Integer quantity; //number or weight in gram
-  private Integer overAllPrice;
 
 }

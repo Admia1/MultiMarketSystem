@@ -10,7 +10,7 @@ public class Product{
 
   private String name;
   private String brand;
-  private String barcode;
+  //private String barcode;
 
   public Integer getId() {
     return id;
@@ -35,7 +35,7 @@ public class Product{
   public void setBrand(String brand) {
     this.brand = brand;
   }
-
+  /*
   public String getBarcode() {
     return barcode;
   }
@@ -43,4 +43,5 @@ public class Product{
   public void setBarcode(String barcode) {
     this.barcode = barcode;
   }
+  */
 }
