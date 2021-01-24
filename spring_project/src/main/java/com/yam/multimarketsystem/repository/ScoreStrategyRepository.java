@@ -8,5 +8,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ScoreStrategyRepository extends CrudRepository<ScoreStrategy, Integer> {
-  List<ScoreStrategy> findAll();
+  List<ScoreStrategy> findAllByOrderByIdDesc();
 }

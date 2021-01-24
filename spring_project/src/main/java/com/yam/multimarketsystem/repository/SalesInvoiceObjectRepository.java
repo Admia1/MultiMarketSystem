@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface SalesInvoiceObjectRepository extends CrudRepository<SalesInvoiceObject, Integer> {
-  List<SalesInvoiceObject> findBySalesInvoice(SalesInvoice salesInvoice);
+  List<SalesInvoiceObject> findBySalesInvoiceAndIsDeletedFalse(SalesInvoice salesInvoice);
   Optional<SalesInvoiceObject> findByIdAndSalesInvoice(Integer id, SalesInvoice salesInvoice);
+  Optional<SalesInvoiceObject> findById(Integer id);
 }

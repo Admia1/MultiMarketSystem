@@ -14,12 +14,11 @@ public class CustomerSalesInvoice {
   @ManyToOne(fetch=FetchType.EAGER)
   private SalesInvoice salesInvoice;
 
+  @ManyToOne(fetch=FetchType.EAGER)
+  private ScoreStrategy scoreStrategy;
+
   public Integer getId() {
     return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
   }
 
   public Customer getCustomer() {
@@ -36,5 +35,13 @@ public class CustomerSalesInvoice {
 
   public void setSalesInvoice(SalesInvoice salesInvoice) {
     this.salesInvoice = salesInvoice;
+  }
+
+  public void setScoreStrategy(ScoreStrategy scoreStrategy){
+    this.scoreStrategy = scoreStrategy;
+  }
+
+  public ScoreStrategy getScoreStrategy(){
+    return scoreStrategy;
   }
 }

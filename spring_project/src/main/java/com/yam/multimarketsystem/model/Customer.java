@@ -15,6 +15,8 @@ public class Customer {
   @OneToOne(fetch=FetchType.EAGER)
   private Card card;
 
+  private Integer score=0;
+
   public Integer getId() {
     return id;
   }
@@ -37,5 +39,19 @@ public class Customer {
 
   public void setCard(Card card) {
     this.card = card;
+  }
+
+  public Integer increaseScore(Integer increase){
+    this.score = this.score + increase;
+    return this.score;
+  }
+
+  public Integer decreaseScore(Integer decrease){
+    this.score = this.score - decrease;
+    return this.score;
+  }
+
+  public Integer getScore(){
+    return this.score;
   }
 }

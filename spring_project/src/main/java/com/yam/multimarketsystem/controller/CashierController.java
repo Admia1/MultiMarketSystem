@@ -19,6 +19,9 @@ import com.yam.multimarketsystem.repository.CardRepository;
 import com.yam.multimarketsystem.repository.ProductRepository;
 import com.yam.multimarketsystem.repository.ProductExistInShopRepository;
 import com.yam.multimarketsystem.repository.DiscountTicketRepository;
+import com.yam.multimarketsystem.repository.CustomerSalesInvoiceRepository;
+import com.yam.multimarketsystem.repository.CustomerRepository;
+import com.yam.multimarketsystem.repository.ScoreStrategyRepository;
 
 
 import com.yam.multimarketsystem.model.Cashier;
@@ -29,6 +32,10 @@ import com.yam.multimarketsystem.model.Card;
 import com.yam.multimarketsystem.model.Product;
 import com.yam.multimarketsystem.model.ProductExistInShop;
 import com.yam.multimarketsystem.model.DiscountTicket;
+import com.yam.multimarketsystem.model.CustomerSalesInvoice;
+import com.yam.multimarketsystem.model.Customer;
+import com.yam.multimarketsystem.model.ScoreStrategy;
+
 
 
 import org.springframework.http.HttpHeaders;
@@ -56,6 +63,13 @@ public class CashierController {
   private ProductExistInShopRepository productExistInShopRepository;
   @Autowired
   private DiscountTicketRepository discountTicketRepository;
+  @Autowired
+  private CustomerSalesInvoiceRepository customerSalesInvoiceRepository;
+  @Autowired
+  private CustomerRepository customerRepository;
+  @Autowired
+  private ScoreStrategyRepository scoreStrategyRepository;
+
 
 
   @PostMapping(path="/addProduct")
@@ -151,23 +165,13 @@ public class CashierController {
   }
 
   @PostMapping("/addSalesInvoiceObject")
-  public @ResponseBody String addSalesInvoiceObject(@RequestParam  Integer shopId, @RequestParam Integer cashierId, @RequestParam Integer salesInvoiceId,
-         @RequestParam Integer productExistInShopId, @RequestParam Integer quantity, @RequestParam Integer overallPrice){
-
-
-    Optional<Shop> o_shop = shopRepository.findById(shopId);
-    if(o_shop.isEmpty())
-      return "Bad shop id";
-
-    Optional<Cashier> o_cashier = cashierRepository.findByIdAndShopAndIsDeletedFalse(cashierId, o_shop.get());
-    if(o_cashier.isEmpty())
-      return "No such cashier registered in such shop";
+  public @ResponseBody String addSalesInvoiceObject(@RequestParam Integer salesInvoiceId, @RequestParam Integer productExistInShopId, @RequestParam Integer quantity, @RequestParam Integer overallPrice){
 
     Optional<SalesInvoice> o_salesInvoice = salesInvoiceRepository.findByIdAndIsDeletedFalseAndIsFinishedFalse(salesInvoiceId);
     if(o_salesInvoice.isEmpty())
       return "Not such sales invoice available";
 
-    Optional<ProductExistInShop> o_productExistInShop = productExistInShopRepository.findByIdAndShopAndIsDeletedFalse(productExistInShopId, o_shop.get());
+    Optional<ProductExistInShop> o_productExistInShop = productExistInShopRepository.findByIdAndShopAndIsDeletedFalse(productExistInShopId, o_salesInvoice.get().getShop());
     if(o_productExistInShop.isEmpty())
       return "Not such existance available";
 
@@ -183,23 +187,9 @@ public class CashierController {
   }
 
   @PostMapping("/deleteSalesInvoiceObject")
-  public @ResponseBody String deleteSalesInvoiceObject(@RequestParam  Integer shopId, @RequestParam Integer cashierId, @RequestParam Integer salesInvoiceId,
-         @RequestParam Integer salesInvoiceObjectId){
+  public @ResponseBody String deleteSalesInvoiceObject(@RequestParam Integer salesInvoiceObjectId){
 
-
-    Optional<Shop> o_shop = shopRepository.findById(shopId);
-    if(o_shop.isEmpty())
-      return "Bad shop id";
-
-    Optional<Cashier> o_cashier = cashierRepository.findByIdAndShopAndIsDeletedFalse(cashierId, o_shop.get());
-    if(o_cashier.isEmpty())
-      return "No such cashier registered in such shop";
-
-    Optional<SalesInvoice> o_salesInvoice = salesInvoiceRepository.findByIdAndIsDeletedFalseAndIsFinishedFalse(salesInvoiceId);
-    if(o_salesInvoice.isEmpty())
-      return "Not such sales invoice available";
-
-    Optional<SalesInvoiceObject> o_salesInvoiceObject = salesInvoiceObjectRepository.findByIdAndSalesInvoice(salesInvoiceObjectId, o_salesInvoice.get());
+    Optional<SalesInvoiceObject> o_salesInvoiceObject = salesInvoiceObjectRepository.findById(salesInvoiceObjectId);
     if(o_salesInvoiceObject.isEmpty())
       return "Not such sales invoice object available";
 
@@ -210,7 +200,73 @@ public class CashierController {
     return "sales inovice object deleted";
   }
 
+  @PostMapping("/finalizeSalesInvoiceWhithoutCustomer")
+  public @ResponseBody String finalizeSalesInvoiceWhithoutCustomer(@RequestParam Integer salesInvoiceId){
+    Optional<SalesInvoice> o_salesInvoice = salesInvoiceRepository.findByIdAndIsDeletedFalseAndIsFinishedFalse(salesInvoiceId);
+    if(o_salesInvoice.isEmpty())
+      return "Not such sales inovice";
+
+    SalesInvoice salesInvoice = o_salesInvoice.get();
+    salesInvoice.finish();
+    salesInvoiceRepository.save(salesInvoice);
+
+    List<SalesInvoiceObject> salesInvoiceObjects = salesInvoiceObjectRepository.findBySalesInvoiceAndIsDeletedFalse(salesInvoice);
+    Integer invoicePrice = salesInvoiceObjects.stream()
+                .map(x -> x.getOverAllPrice())
+                .reduce(0 , (num1, num2) -> num1 + num2);
+
+    return "Sales invoice finalized overall price :" + invoicePrice.toString();
+
+  }
+
+  @PostMapping("/finalizeSalesInvoiceUsingCustomerCard")
+  public @ResponseBody String finalizeSalesInvoiceUsingCustomer(@RequestParam Integer salesInvoiceId, @RequestParam String customerCardCode){
+
+    Optional<Card> o_card = cardRepository.findByCode(customerCardCode);
+    if(o_card.isEmpty())
+      return "Bad card code";
+    Card card = o_card.get();
+
+    Optional<Customer> o_customer = customerRepository.findByCard(card);
+    if(o_customer.isEmpty())
+      return "not registered card";
+    Customer customer = o_customer.get();
+
+    Optional<SalesInvoice> o_salesInvoice = salesInvoiceRepository.findByIdAndIsDeletedFalseAndIsFinishedFalse(salesInvoiceId);
+    if(o_salesInvoice.isEmpty())
+      return "Not such sales inovice";
+
+    ScoreStrategy scoreStrategy = scoreStrategyRepository.findAllByOrderByIdDesc().get(0);
+
+    SalesInvoice salesInvoice = o_salesInvoice.get();
+    salesInvoice.finish();
+    salesInvoiceRepository.save(salesInvoice);
+
+    CustomerSalesInvoice n_customerSalesInvoice = new CustomerSalesInvoice();
+    n_customerSalesInvoice.setCustomer(customer);
+    n_customerSalesInvoice.setSalesInvoice(salesInvoice);
+    n_customerSalesInvoice.setScoreStrategy(scoreStrategy);
+
+    customerSalesInvoiceRepository.save(n_customerSalesInvoice);
+
+    List<SalesInvoiceObject> salesInvoiceObjects = salesInvoiceObjectRepository.findBySalesInvoiceAndIsDeletedFalse(salesInvoice);
+    Integer invoicePrice = salesInvoiceObjects.stream()
+                .map(x -> x.getOverAllPrice())
+                .reduce(0 , (num1, num2) -> num1 + num2);
 
 
+    Integer finalInvoicePrice = invoicePrice;
+    //discount price stuff based on discount tincket should be emplmented here and time is up :D
+
+
+    Shop shop = salesInvoice.getShop();
+    shop.increaseFee(n_customerSalesInvoice.getScoreStrategy().getFeeOfPurchase(finalInvoicePrice));
+    customer.increaseScore(n_customerSalesInvoice.getScoreStrategy().getScoreOfPurchase(finalInvoicePrice));
+
+    customerRepository.save(customer);
+    shopRepository.save(shop);
+
+    return "Sales invoice finalized overall price of :" + invoicePrice.toString();
+  }
 
 }

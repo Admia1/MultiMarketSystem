@@ -14,12 +14,13 @@ public class Shop {
   @ManyToOne(fetch=FetchType.EAGER)
   private Address address;
 
+  private Integer fee = 0;
+
+
+
+
   public Integer getId() {
     return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
   }
 
   public String getName() {
@@ -36,5 +37,19 @@ public class Shop {
 
   public void setAddress(Address address) {
     this.address = address;
+  }
+
+  public Integer increaseFee(Integer increase){
+    this.fee = this.fee + increase;
+    return this.fee;
+  }
+
+  public Integer decreaseFee(Integer decrease){
+    this.fee = this.fee - decrease;
+    return this.fee;
+  }
+
+  public Integer getFee(){
+    return this.fee;
   }
 }
